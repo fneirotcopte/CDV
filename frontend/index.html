@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dirección de Calidad de Vida</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  
+  <!-- Header institucional -->
+  <header class="header">
+    <div class="banner-superior">
+      <h1>DIRECCIÓN DE CALIDAD DE VIDA</h1>
+      <h2>Municipalidad de Santiago del Estero</h2>
+    </div>
+    <nav class="nav-bar">
+      <a href="#">INICIO</a>
+      <a href="#">BROMATOLOGÍA</a>
+      <a href="#">SEGURIDAD</a>
+      <a href="#">SANEAMIENTO</a>
+      <a href="login.html" class="ingresar">INGRESAR</a>
+    </nav>
+  </header>
+
+  <!-- Imagen principal con logo -->
+  <section class="hero">
+    <div class="lado-logo">
+      <img src="imagenes/logo_santiago.png" alt="Logo Santiago" />
+      <p>"LEMA INSTITUCIONAL"</p>
+    </div>
+    <img class="imagen-principal" src="imagenes/fondo home.png" alt="Edificio" />
+  </section>
+
+  <!-- Noticias -->
+  <section class="noticias">
+    <h3>NOTICIAS</h3>
+    <div class="contenedor-noticias">
+      <div class="noticia">
+        <img src="imagenes/mini01.png" alt="Ubicación" />
+        <p>NUEVA UBICACIÓN</p>
+      </div>
+      <div class="noticia">
+        <img src="imagenes/mini02.png" alt="Barrio" />
+        <p>TU BARRIO</p>
+      </div>
+      <div class="noticia">
+        <img src="imagenes/mini03.png" alt="Operativos" />
+        <p>OPERATIVOS</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="item-footer">
+      <img src="imagenes/icono-telefono.png" alt="Teléfono" />
+      <p>0385 15-450-5700</p>
+    </div>
+    <div class="item-footer">
+      <img src="imagenes/icono-direccion.png" alt="Dirección" />
+      <p>Belgrano (N) 843<br />Complejo Parque Norte<br />Bloque 2</p>
+    </div>
+    <div class="item-footer">
+      <img src="imagenes/icono-email.png" alt="Email" />
+      <p>Calidad.de.vida@gmail.com</p>
+    </div>
+    <div class="item-footer">
+      <img src="imagenes/icono-horario.png" alt="Atención" />
+      <p>Lun. a Vie.<br />7:00 - 13:00</p>
+    </div>
+  </footer>
+
+  <!-- Script para manejar el login -->
+  <script>
+    // Mostrar el formulario cuando se hace click en "INGRESAR"
+    document.getElementById('btnIngresar').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('loginSection').style.display = 'block';
+    });
+
+    // Manejar el envío del formulario
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const contrasena = document.getElementById('contrasena').value;
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, contrasena })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('Login exitoso');
+          localStorage.setItem('token', data.token); // Guardamos el token
+          document.getElementById('loginError').textContent = '';
+        } else {
+          document.getElementById('loginError').textContent = data.error || 'Error al iniciar sesión';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('loginError').textContent = 'Error al conectar con el servidor';
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -9,10 +9,10 @@ db.query('SELECT * FROM usuarios', async (err, results) => {
 
   for (const usuario of results) {
     // Si ya está encriptada, la saltamos (esto es útil si se ejecuta más de una vez por accidente)
-    if (usuario.contrasena.startsWith('$2a$')) {
-      console.log(`El usuario ${usuario.email} ya tiene la contraseña encriptada.`);
-      continue;
-    }
+     if (/^\$2[aby]\$.{56}$/.test(usuario.contrasena)) {
+       console.log(`El usuario ${usuario.email} ya tiene la contraseña encriptada.`);
+     continue;
+   }
 
     const hash = await bcrypt.hash(usuario.contrasena, 10);
 

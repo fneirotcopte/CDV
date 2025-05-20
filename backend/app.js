@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Middleware para servir archivos estáticos (frontend)
-app.use(express.static(path.join(__dirname, '../frontend/public')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Ruta básica de prueba
 app.get('/', (req, res) => {
@@ -37,7 +37,12 @@ const verificarToken = (req, res, next) => {
   }
 
   try {
-    const decoded = require('jsonwebtoken').verify(token, process.env.JWT_SECRET || 'secreto');
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      throw new Error('JWT_SECRET no está definido en las variables de entorno');
+    }
+
+    const decoded = jwt.verify(token, secret);
     req.user = decoded;
     next();
   } catch (err) {

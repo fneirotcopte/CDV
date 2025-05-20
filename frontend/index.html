@@ -71,43 +71,5 @@
     </div>
   </footer>
 
-  <!-- Script para manejar el login -->
-  <script>
-    // Mostrar el formulario cuando se hace click en "INGRESAR"
-    document.getElementById('btnIngresar').addEventListener('click', (e) => {
-      e.preventDefault();
-      document.getElementById('loginSection').style.display = 'block';
-    });
-
-    // Manejar el envío del formulario
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const email = document.getElementById('email').value;
-      const contrasena = document.getElementById('contrasena').value;
-
-      try {
-        const response = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, contrasena })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          alert('Login exitoso');
-          localStorage.setItem('token', data.token); // Guardamos el token
-          document.getElementById('loginError').textContent = '';
-        } else {
-          document.getElementById('loginError').textContent = data.error || 'Error al iniciar sesión';
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('loginError').textContent = 'Error al conectar con el servidor';
-      }
-    });
-  </script>
-
 </body>
 </html>

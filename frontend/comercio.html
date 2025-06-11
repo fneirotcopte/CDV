@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Comercio</title>
+</head>
+<body>
+  <h1>Registro de Comercio</h1>
+  <form action="/registro-comercio" method="POST" enctype="multipart/form-data">
+    <fieldset>
+      <legend>Datos del Propietario</legend>
+      <label>Nombre: <input type="text" name="nombre" required></label><br>
+      <label>Apellido: <input type="text" name="apellido" required></label><br>
+      <label>CUIT: <input type="text" name="cuit" required></label><br>
+      <label>Domicilio: <input type="text" name="domicilio" required></label><br>
+      <label>Teléfono: <input type="tel" name="telefono_prop" required></label><br>
+      <label>Correo electrónico: <input type="email" name="email_prop" required></label><br>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+      <legend>Datos del comercio</legend>
+      <label>Nombre Comercial: <input type="text" name="nombre_comercial" required></label><br>
+      <label>Ubicación: <input type="text" name="ubicacion" required></label><br>
+      <label>Teléfono: <input type="tel" name="telefono_com" required></label><br>
+      <label>Correo: <input type="email" name="email_com" required></label><br>
+      <label>Rubro: <input type="text" name="rubro" required></label><br>
+      <label>Documentación: <input type="file" name="documentacion"></label><br>
+    </fieldset>
+
+    <br>
+    <button type="submit">Registrar</button>
+  </form>
+</body>
+</html>

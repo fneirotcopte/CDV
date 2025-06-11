@@ -1,0 +1,190 @@
+/* Configuración general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Contenedor principal con imagen de fondo */
+.main-container {
+    background-image: url("../img/img-parque-n.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Caja de login con transparencia */
+.login-box {
+    background-color: rgba(0, 123, 255, 0.7);
+    /* Transparencia al 70% */
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 60px 30px 30px;
+    /* Más padding arriba para el logo */
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    /* Para posicionar el logo */
+}
+
+.logo {
+    width: 120px;
+    display: block;
+    margin: 0 auto 25px;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form-container {
+    color: white;
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(0, 86, 179, 0.9);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: rgba(0, 61, 122, 0.9);
+}
+
+.form-footer {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.forgot-password {
+    margin-bottom: 10px;
+}
+
+.forgot-password a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.register-link {
+    margin-top: 15px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.register-link a {
+    color: white;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.register-link a:hover {
+    text-decoration: none;
+}
+
+.cancel-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .main-container {
+        padding: 10px;
+    }
+
+    .login-box {
+        padding: 60px 20px 20px;
+        border-radius: 10px;
+    }
+
+    .logo {
+        width: 100px;
+        top: -50px;
+    }
+
+    /* Añadir al final del archivo existente */
+
+    /* Estilos para mensajes */
+    #error-message {
+        background-color: rgba(255, 0, 0, 0.2);
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 15px;
+        border: 1px solid rgba(255, 0, 0, 0.3);
+    }
+
+    /* Estilos para el ícono de carga */
+    .fa-spinner {
+        margin-right: 8px;
+    }
+
+    /* Ajustes para el formulario de recuperación */
+    #recovery-form .input-group {
+        margin-bottom: 20px;
+    }
+}

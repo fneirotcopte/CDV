@@ -1,0 +1,56 @@
+/* Configuración general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.main-container {
+  background-image: url("../img/img-parque-n.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.form-box {
+  background-color: rgba(0, 123, 255, 0.7);
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+  padding: 80px 30px 30px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin-top: 40px;
+  z-index: 1;
+}
+
+.logo {
+  width: 120px;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.form-content {
+  color: white;
+}
+
+/* ... (resto del CSS se mantiene similar, eliminando estilos específicos para rubros) ... */

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Comercio - Municipalidad</title>
+  <link rel="stylesheet" href="./styles/registro-comercio.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="main-container">
+    <div class="form-box">
+      <img src="../img/logo-bromatologia4.png" alt="Logo Bromatología" class="logo">
+      
+      <div class="form-content">
+        <h1 id="form-title">Registro de Comercio</h1>
+        
+        <form action="/registro-comercio" method="POST" enctype="multipart/form-data" aria-labelledby="form-title" id="comercioForm">
+          <!-- Sección de Datos del Propietario -->
+          <div class="form-section">
+            <div class="section-header" onclick="toggleSection(this)" role="button" aria-expanded="true" aria-controls="datos-propietario" tabindex="0">
+              <span>Datos del Propietario</span>
+              <span class="section-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div id="datos-propietario" class="section-content active" role="region">
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" required 
+                       placeholder="Ej: Juan" 
+                       aria-required="true"
+                       title="Ingrese el nombre del propietario">
+              </div>
+
+              <div class="form-group">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" name="apellido" required 
+                       placeholder="Ej: Pérez" 
+                       aria-required="true"
+                       title="Ingrese el apellido del propietario">
+              </div>
+
+              <div class="form-group">
+                <label for="cuit">CUIT *</label>
+                <input type="text" id="cuit" name="cuit" required 
+                       placeholder="Ej: 30-12345678-9" 
+                       aria-required="true"
+                       title="Ingrese el CUIT con formato XX-XXXXXXXX-X"
+                       pattern="\d{2}-\d{8}-\d{1}">
+              </div>
+
+              <div class="form-group">
+                <label for="domicilio">Domicilio *</label>
+                <input type="text" id="domicilio" name="domicilio" required 
+                       placeholder="Ej: Calle 123" 
+                       aria-required="true"
+                       title="Ingrese el domicilio del propietario">
+              </div>
+
+              <div class="compact-row">
+                <div class="form-group">
+                  <label for="telefono_prop">Teléfono *</label>
+                  <input type="tel" id="telefono_prop" name="telefono_prop" required 
+                         placeholder="Ej: 3854765432" 
+                         aria-required="true"
+                         title="Ingrese el número de teléfono sin espacios"
+                         pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
+                  <label for="email_prop">Email *</label>
+                  <input type="email" id="email_prop" name="email_prop" required 
+                         placeholder="Ej: juan@example.com" 
+                         aria-required="true"
+                         title="Ingrese el email del propietario">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección de Datos del Comercio -->
+          <div class="form-section">
+            <div class="section-header" onclick="toggleSection(this)" role="button" aria-expanded="false" aria-controls="datos-comercio" tabindex="0">
+              <span>Datos del Comercio</span>
+              <span class="section-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div id="datos-comercio" class="section-content" role="region">
+              <div class="form-group">
+                <label for="nombre_comercial">Nombre Comercial *</label>
+                <input type="text" id="nombre_comercial" name="nombre_comercial" required 
+                       placeholder="Ej: Almacén Don Pedro" 
+                       aria-required="true"
+                       title="Ingrese el nombre comercial de su establecimiento">
+              </div>
+
+              <div class="form-group">
+                <label for="ubicacion">Ubicación *</label>
+                <input type="text" id="ubicacion" name="ubicacion" required 
+                       placeholder="Ej: Calle Principal 456" 
+                       aria-required="true"
+                       title="Ingrese la ubicación del comercio">
+              </div>
+
+              <div class="compact-row">
+                <div class="form-group">
+                  <label for="telefono_com">Teléfono del Comercio *</label>
+                  <input type="tel" id="telefono_com" name="telefono_com" required 
+                         placeholder="Ej: 3854765432" 
+                         aria-required="true"
+                         title="Ingrese el teléfono del comercio"
+                         pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
+                  <label for="email_com">Email del Comercio *</label>
+                  <input type="email" id="email_com" name="email_com" required 
+                         placeholder="Ej: contacto@almacen.com" 
+                         aria-required="true"
+                         title="Ingrese el email del comercio">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="rubro">Rubro *</label>
+                <select id="rubro" name="rubro" required aria-required="true" title="Seleccione el rubro del comercio">
+                  <option value="" disabled selected>Seleccione el rubro...</option>
+                  <option value="vendedor_ambulante">Vendedor Ambulante</option>
+                  <option value="bar_nocturno">Bar Nocturno/Confitería/Restaurante</option>
+                  <option value="food_truck">Food Truck</option>
+                  <option value="comercio_general">Comercio en General</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección de Documentación -->
+          <div class="form-section">
+            <div class="section-header" onclick="toggleSection(this)" role="button" aria-expanded="false" aria-controls="documentacion" tabindex="0">
+              <span>Documentación</span>
+              <span class="section-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div id="documentacion" class="section-content" role="region">
+              <div class="form-group">
+                <label for="documentacion">Documentación requerida *</label>
+                <input type="file" id="documentacion" name="documentacion" multiple
+                       title="Suba toda la documentación requerida"
+                       accept=".pdf,.jpg,.jpeg,.png">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">Registrar Comercio</button>
+            <button type="button" class="btn-cancel" onclick="cancelarEdicion()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./scripts/registro-comercio.js"></script>
+</body>
+</html>

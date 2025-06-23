@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  height: 100vh;
+  background: radial-gradient(circle at center, #9da49f 0%, #4e5451 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor con ancho fijo para alinear todo */
+.login-box {
+  width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Contenedor de vistas */
+.view-container {
+  position: relative;
+  width: 100%;
+}
+
+.view {
+  transition: opacity 0.3s ease;
+}
+
+.view.hidden {
+  display: none;
+}
+
+/* Logo */
+.logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Título */
+h2 {
+  margin-bottom: 1.5rem;
+  font-weight: normal;
+  color: #ffffff;
+}
+
+/* Grupos de input */
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  background-color: #5e5e5e;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  outline: none;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.4);
+}
+
+.input-group .icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: white;
+}
+
+/* Botones */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to bottom, #00ff55, #158411);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background: linear-gradient(to bottom, #00cc44, #0e6a0d);
+}
+
+/* Enlaces */
+.volver-login {
+  margin-top: 1rem;
+}
+
+.volver-login a {
+  color: rgb(255, 255, 255);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: 0.2s ease;
+}
+
+.volver-login a:hover {
+  color: #aaffaa;
+}
+
+/* Mensaje de error */
+.error-msg {
+  color: rgb(255, 255, 255);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* Grupo de botones */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.btn-link {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background: linear-gradient(to bottom, #00ff55, #158411);
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.btn-link:hover {
+  background: linear-gradient(to bottom, #00cc44, #0e6a0d);
+}
+
+.btn-link.secondary {
+  background: none;
+  border: 1px solid white;
+  color: white;
+}
+
+.btn-link.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

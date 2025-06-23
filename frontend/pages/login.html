@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Acceso - Calidad de Vida</title>
+  <link rel="stylesheet" href="../styles/login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="login-box">
+      <div class="view-container" id="viewContainer">
+       <div class="view" id="loginView">
+          <div class="login-content">
+            <div class="logo">
+              <img src="../img/logo-calidad.png" alt="Logo Calidad de Vida" />
+            </div>
+
+            <h2>Ingrese usuario y contraseña</h2>
+
+            <div class="input-group">
+              <i class="fas fa-user icon"></i>
+              <input type="text" id="email" placeholder="usuario@ejemplo.com" required />
+            </div>
+
+            <div class="input-group">
+              <i class="fas fa-key icon"></i>
+              <input type="password" id="password" placeholder="••••••••" required />
+            </div>
+
+            <button type="button" class="login-btn" id="loginBtn">Login</button>
+
+            <p class="volver-login">
+              <a href="#" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="view hidden" id="errorView">
+          <div class="login-content">
+            <div class="logo">
+              <img src="../img/logo-calidad.png" alt="Logo Calidad de Vida" />
+            </div>
+
+            <h2>Acceso denegado</h2>
+            <p class="error-msg">El usuario o la contraseña no son válidos.</p>
+
+            <div class="btn-group">
+              <a href="#" class="btn-link" id="tryAgainLink">Intentar nuevamente</a>
+              <a href="#" class="btn-link secondary" id="forgotPasswordLink2">Ir a restablecer contraseña</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="view hidden" id="recoveryView">
+          <div class="login-content">
+            <div class="logo">
+              <img src="../img/logo-calidad.png" alt="Logo Calidad de Vida" />
+            </div>
+
+            <h2>Restablecer contraseña</h2>
+
+            <div class="input-group">
+              <i class="fas fa-envelope icon"></i>
+              <input type="email" id="recoveryEmail" placeholder="Ingresá tu correo" required />
+            </div>
+
+            <button type="button" class="login-btn" id="sendRecoveryBtn">Enviar mail</button>
+
+            <p class="volver-login">
+              <a href="#" id="backToLoginLink">Volver atrás</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/login.js"></script>
+</body>
+</html> 

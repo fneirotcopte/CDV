@@ -1,0 +1,210 @@
+import { checkAuth, infoUsuario } from '../auth.js';    
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const userData = checkAuth(); 
+    if (!userData) return;
+
+    infoUsuario(userData);
+
+    function cerrarSesion() {
+      localStorage.removeItem('token');
+      window.location.href = "login.html";}
+
+      document.querySelector('.logout-btn').addEventListener('click', cerrarSesion);
+
+
+    // Elementos del formulario
+    const formRegistro = document.getElementById('formRegistro');
+
+    // Función para validar DNI
+    function validarDNI(dni) {
+        const regex = /^\d{7,8}$/;
+        return regex.test(dni);
+    }
+
+    // Función para validar teléfono
+    function validarTelefono(telefono) {
+        const regex = /^\d{10,15}$/;
+        return regex.test(telefono);
+    }
+
+    // Función para validar contraseña
+    function validarContrasena(contrasena) {
+        return contrasena.length >= 8;
+    }
+
+    // Función para validar que las contraseñas coincidan
+    function contrasenasCoinciden(contrasena, confirmacion) {
+        return contrasena === confirmacion;
+    }
+
+    // Función para validar email
+    function validarEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    // Función para mostrar errores
+    function mostrarError(elemento, mensaje) {
+        // Eliminar mensajes de error previos
+        const errorExistente = elemento.nextElementSibling;
+        if (errorExistente && errorExistente.classList.contains('error-mensaje')) {
+            errorExistente.remove();
+        }
+
+        // Crear y mostrar nuevo mensaje de error
+        const error = document.createElement('div');
+        error.className = 'error-mensaje';
+        error.textContent = mensaje;
+        elemento.insertAdjacentElement('afterend', error);
+        elemento.classList.add('input-error');
+    }
+
+    // Función para limpiar errores
+    function limpiarError(elemento) {
+        const error = elemento.nextElementSibling;
+        if (error && error.classList.contains('error-mensaje')) {
+            error.remove();
+        }
+        elemento.classList.remove('input-error');
+    }
+
+    // Validación en tiempo real
+    document.getElementById('DNI').addEventListener('blur', function() {
+        if (!validarDNI(this.value)) {
+            mostrarError(this, 'El DNI debe tener 7 u 8 dígitos');
+        } else {
+            limpiarError(this);
+        }
+    });
+
+    document.getElementById('telefono').addEventListener('blur', function() {
+        if (!validarTelefono(this.value)) {
+            mostrarError(this, 'El teléfono debe tener entre 10 y 15 dígitos');
+        } else {
+            limpiarError(this);
+        }
+    });
+
+    document.getElementById('correo').addEventListener('blur', function() {
+        if (!validarEmail(this.value)) {
+            mostrarError(this, 'Ingrese un correo electrónico válido');
+        } else {
+            limpiarError(this);
+        }
+    });
+
+    document.getElementById('contraseña').addEventListener('blur', function() {
+        if (!validarContrasena(this.value)) {
+            mostrarError(this, 'La contraseña debe tener al menos 8 caracteres');
+        } else {
+            limpiarError(this);
+        }
+    });
+
+    document.getElementById('confirmarC').addEventListener('blur', function() {
+        const contrasena = document.getElementById('contraseña').value;
+        if (!contrasenasCoinciden(contrasena, this.value)) {
+            mostrarError(this, 'Las contraseñas no coinciden');
+        } else {
+            limpiarError(this);
+        }
+    });
+
+// Función para cargar datos del empleado a editar
+async function cargarDatosEmpleado(idEmpleado) {
+  try {
+    const response = await fetch(`/api/auth/obtener/${idEmpleado}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error('Error al cargar datos del empleado');
+    }
+    
+    const empleado = await response.json();
+    
+    // Llenar el formulario con los datos
+    document.getElementById('nombre').value = empleado.nombre;
+    document.getElementById('apellido').value = empleado.apellido;
+    document.getElementById('DNI').value = empleado.dni;
+    document.getElementById('domicilio').value = empleado.domicilio;
+    document.getElementById('telefono').value = empleado.telefono;
+    document.getElementById('area').value = empleado.area;
+    document.getElementById('correo').value = empleado.correo_electronico;
+    document.getElementById('rol').value = empleado.rol;
+    
+    // Cambiar el texto del botón
+    const botonSubmit = document.querySelector('.boton-alta');
+    botonSubmit.innerHTML = '<i class="fas fa-user-edit"></i> Actualizar empleado';
+    
+    // Agregar ID oculto al formulario
+    const inputOculto = document.createElement('input');
+    inputOculto.type = 'hidden';
+    inputOculto.name = 'id_empleado';
+    inputOculto.value = idEmpleado;
+    formRegistro.appendChild(inputOculto);
+    
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error al cargar datos del empleado');
+  }
+}
+
+// Modificar el evento submit del formulario
+formRegistro.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    let formularioValido = true;
+
+    // Validaciones previas (mantener las existentes)
+    
+    if (formularioValido) {
+        const formData = new FormData(formRegistro);
+        const idEmpleado = formData.get('id_empleado');
+        const url = idEmpleado ? `/api/auth/actualizar/${idEmpleado}` : '/api/auth/registrar';
+        const method = idEmpleado ? 'PUT' : 'POST';
+
+        try {
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({
+                    nombre: formData.get('nombre'),
+                    apellido: formData.get('apellido'),
+                    dni: formData.get('DNI'),
+                    domicilio: formData.get('domicilio'),
+                    telefono: formData.get('telefono'),
+                    area: formData.get('area'),
+                    correo_electronico: formData.get('correo'),
+                    rol: formData.get('rol'),
+                    contraseña: formData.get('contraseña')
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
+
+            alert(idEmpleado ? 'Empleado actualizado con éxito' : 'Usuario registrado con éxito');
+            window.location.href = '../pages/panel-principal.html';
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error al procesar la solicitud: ' + error.message);
+        }
+    }
+});
+
+// Verificar si estamos en modo edición (URL tiene parámetro id)
+const urlParams = new URLSearchParams(window.location.search);
+const idEmpleado = urlParams.get('id');
+if (idEmpleado) {
+    cargarDatosEmpleado(idEmpleado);
+}
+
+});
